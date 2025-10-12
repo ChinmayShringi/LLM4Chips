@@ -1,0 +1,26 @@
+# Microwatt Core
+microwatt_asic.v
+
+# Behavioral models (memory and multiplier)
+multiply_add_64x64.v
+Microwatt_FP_DFFRFile.v
+RAM32_1RW1R.v
+RAM512.v
+
+# UART
+uart_top.v
+uart_regs.v
+uart_receiver.v
+uart_transmitter.v
+uart_sync_flops.v
+uart_rfifo.v
+uart_tfifo.v
+uart_wb.v
+raminfr.v
+
+# JTAG TAP
+tap_top.v
+
+# Simplebus
+simplebus_host.v
+
