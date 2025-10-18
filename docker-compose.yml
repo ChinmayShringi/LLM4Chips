@@ -1,0 +1,119 @@
+services:
+  # GHDL service for VHDL simulation and synthesis
+  ghdl:
+    image: ghdl/ghdl:buster-llvm-7
+    container_name: microwatt-ghdl
+    working_dir: /work
+    volumes:
+      # Mount entire project (read-write)
+      - ./:/work:rw
+      # Optional: Cache compiled objects (speeds up rebuilds)
+      - ghdl-cache:/work/.ghdl-cache
+    command: bash
+    stdin_open: true
+    tty: true
+    networks:
+      - microwatt-net
+
+  # Yosys service for synthesis
+  yosys:
+    image: hdlc/ghdl:yosys
+    container_name: microwatt-yosys
+    working_dir: /work
+    volumes:
+      - ./:/work:rw
+    command: bash
+    stdin_open: true
+    tty: true
+    networks:
+      - microwatt-net
+
+  # Verilator service for fast simulation
+  verilator:
+    image: verilator/verilator:latest
+    container_name: microwatt-verilator
+    working_dir: /work
+    volumes:
+      - ./:/work:rw
+      - verilator-cache:/work/.verilator-cache
+    command: bash
+    stdin_open: true
+    tty: true
+    networks:
+      - microwatt-net
+
+  # OpenLane service for ASIC synthesis (when needed)
+  openlane:
+    image: efabless/openlane:latest
+    container_name: microwatt-openlane
+    working_dir: /work
+    volumes:
+      - ./:/work:rw
+      # PDK cache (so you don't re-download)
+      - pdk-cache:/root/.volare
+      - openlane-cache:/openlane
+    environment:
+      - PDK_ROOT=/root/.volare/volare/sky130
+    command: bash
+    stdin_open: true
+    tty: true
+    networks:
+      - microwatt-net
+
+  # Development environment with all tools
+  dev:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    container_name: microwatt-dev
+    working_dir: /work
+    volumes:
+      - ./:/work:rw
+      - dev-cache:/root/.cache
+    command: bash
+    stdin_open: true
+    tty: true
+    networks:
+      - microwatt-net
+
+volumes:
+  # Named volumes (persist across prune unless you prune volumes too)
+  ghdl-cache:
+    driver: local
+  verilator-cache:
+    driver: local
+  pdk-cache:
+    driver: local
+  openlane-cache:
+    driver: local
+  dev-cache:
+    driver: local
+
+networks:
+  microwatt-net:
+    driver: bridge
+
+# Usage:
+# ------
+#
+# Start a service:
+#   docker-compose run --rm ghdl bash
+#   docker-compose run --rm yosys bash
+#   docker-compose run --rm openlane bash
+#
+# Run specific command:
+#   docker-compose run --rm ghdl make DOCKER=0 core_tb
+#   docker-compose run --rm yosys yosys -V
+#
+# Stop all:
+#   docker-compose down
+#
+# Remove volumes (careful!):
+#   docker-compose down -v
+#
+# Benefits:
+# - All project files on HOST (safe from prune)
+# - Named volumes for caches (survive prune)
+# - Easy service switching
+# - No manual volume mounts needed
+

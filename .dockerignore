@@ -1,0 +1,55 @@
+# Prevent these from being copied into Docker images
+# (They're mounted as volumes instead)
+
+# Git
+.git/
+.gitignore
+
+# Dependencies (large, will be mounted)
+dependencies/
+
+# Build artifacts
+*.o
+*.a
+*.so
+*.out
+*.vvp
+*.vcd
+*.ghw
+obj_dir/
+.ghdl-cache/
+.verilator-cache/
+
+# Results (will be generated)
+results/
+openlane/*/runs/
+
+# Logs
+*.log
+*.rpt
+
+# macOS
+.DS_Store
+._*
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
