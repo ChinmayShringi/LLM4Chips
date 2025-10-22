@@ -1,0 +1,6 @@
+openlane/microwatt_core/runs/*
+openlane/microwatt_core/logs/*
+openlane/microwatt_core/abc.history
+rtl/microwatt_asic.v.bak
+temp_reference/*
+pdk/*

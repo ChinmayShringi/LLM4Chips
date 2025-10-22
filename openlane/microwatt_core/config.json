@@ -1,56 +1,44 @@
 {
   "DESIGN_NAME": "toplevel",
+  "PDK": "sky130A",
+  "STD_CELL_LIBRARY": "sky130_fd_sc_hd",
   "VERILOG_FILES": [
+    "dir::../../rtl/deps/defines.v",
+    "dir::../../rtl/deps/uart_defines.v",
     "dir::../../rtl/microwatt_asic.v",
-    "dir::../../rtl/multiply_add_64x64.v",
-    "dir::../../rtl/Microwatt_FP_DFFRFile.v",
-    "dir::../../rtl/RAM32_1RW1R.v",
-    "dir::../../rtl/RAM512.v",
-    "dir::../../rtl/tap_top.v",
-    "dir::../../rtl/simplebus_host.v",
-    "dir::../../rtl/uart_top.v",
-    "dir::../../rtl/uart_regs.v",
-    "dir::../../rtl/uart_receiver.v",
-    "dir::../../rtl/uart_transmitter.v",
-    "dir::../../rtl/uart_sync_flops.v",
-    "dir::../../rtl/uart_rfifo.v",
-    "dir::../../rtl/uart_tfifo.v",
-    "dir::../../rtl/uart_wb.v",
-    "dir::../../rtl/raminfr.v"
+    "dir::../../rtl/deps/tap_top.v",
+    "dir::../../rtl/deps/raminfr.v",
+    "dir::../../rtl/deps/uart_top.v",
+    "dir::../../rtl/deps/uart_transmitter.v",
+    "dir::../../rtl/deps/uart_receiver.v",
+    "dir::../../rtl/deps/uart_wb.v",
+    "dir::../../rtl/deps/uart_regs.v",
+    "dir::../../rtl/deps/uart_rfifo.v",
+    "dir::../../rtl/deps/uart_tfifo.v",
+    "dir::../../rtl/deps/uart_sync_flops.v",
+    "dir::../../rtl/deps/simplebus_host.v",
+    "dir::../../rtl/deps/RAM32_1RW1R.v",
+    "dir::../../rtl/deps/RAM512.v",
+    "dir::../../rtl/deps/multiply_add_64x64.v",
+    "dir::../../rtl/deps/Microwatt_FP_DFFRFile.v"
   ],
   
   "CLOCK_PORT": "ext_clk",
-  "CLOCK_PERIOD": 20.0,
+  "CLOCK_PERIOD": 20,
+  "BASE_SDC_FILE": "dir::base.sdc",
+  
+  "SYNTH_READ_VERILOG_OPTS": ["-nowidelatch"],
+  "QUIT_ON_SYNTH_CHECKS": false,
   
   "FP_SIZING": "absolute",
-  "DIE_AREA": "0 0 2000 3000",
-  "CORE_AREA": "20 20 1980 2980",
+  "DIE_AREA": "0 0 5000 6000",
   
-  "PL_TARGET_DENSITY": 0.30,
-  "FP_CORE_UTIL": 30,
+  "PL_TARGET_DENSITY": 0.20,
+  
+  "GRT_REPAIR_ANTENNAS": false,
+  "RUN_HEURISTIC_DIODE_INSERTION": false,
   
   "VDD_NETS": ["vccd1"],
-  "GND_NETS": ["vssd1"],
-  
-  "SYNTH_STRATEGY": "AREA 0",
-  "SYNTH_MAX_FANOUT": 6,
-  
-  "PL_RANDOM_GLB_PLACEMENT": 1,
-  "PL_RESIZER_DESIGN_OPTIMIZATIONS": 1,
-  "PL_RESIZER_TIMING_OPTIMIZATIONS": 1,
-  
-  "GLB_RESIZER_TIMING_OPTIMIZATIONS": 1,
-  
-  "ROUTING_CORES": 4,
-  
-  "RUN_KLAYOUT_XOR": false,
-  "RUN_KLAYOUT_DRC": true,
-  "RUN_MAGIC_DRC": true,
-  
-  "pdk::sky130*": {
-    "MAX_FANOUT_CONSTRAINT": 6,
-    "SYNTH_FLAT_TOP": 1,
-    "SYNTH_NO_FLAT": 0
-  }
+  "GND_NETS": ["vssd1"]
 }
 
