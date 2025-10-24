@@ -32,9 +32,9 @@
   "QUIT_ON_SYNTH_CHECKS": false,
   
   "FP_SIZING": "absolute",
-  "DIE_AREA": "0 0 5000 6000",
+  "DIE_AREA": "0 0 7000 8000",
   
-  "PL_TARGET_DENSITY": 0.20,
+  "PL_TARGET_DENSITY": 0.15,
   
   "GRT_REPAIR_ANTENNAS": false,
   "RUN_HEURISTIC_DIODE_INSERTION": false,
