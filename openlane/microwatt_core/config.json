@@ -28,7 +28,7 @@
   "BASE_SDC_FILE": "dir::base.sdc",
   "EXTRA_EXCLUDED_CELLS": "sky130_fd_sc_hd__probe_p_*",
   
-  "SYNTH_STRATEGY": "AREA 2",
+  "SYNTH_STRATEGY": "AREA 3",
   "SYNTH_READ_VERILOG_OPTS": ["-nowidelatch"],
   "QUIT_ON_SYNTH_CHECKS": false,
   
